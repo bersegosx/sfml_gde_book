@@ -1,19 +1,3 @@
-
-//
-// Disclaimer:
-// ----------
-//
-// This code will work only if you selected window, graphics and audio.
-//
-// Note that the "Run Script" build phase will copy the required frameworks
-// or dylibs to your application bundle so you can execute it on any OS X
-// computer.
-//
-// Your resource files (images, sounds, fonts, ...) are also copied to your
-// application bundle. To get the path to these resources, use the helper
-// function `resourcePath()` from ResourcePath.hpp
-//
-
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -38,6 +22,16 @@ int main(int, char const**)
         return EXIT_FAILURE;
     }
     sf::Sprite sprite(texture);
+    
+    // Load mushroom
+    sf::Texture mushroomTexture;
+    if (!mushroomTexture.loadFromFile(resourcePath() + "Mushroom.png")) {
+        return EXIT_FAILURE;
+    }
+    sf::Sprite mushroomSprite(mushroomTexture);
+    sf::Vector2u size = mushroomTexture.getSize();
+    mushroomSprite.setOrigin(size.x/2, size.y/2);
+    sf::Vector2f increment(0.4f, 0.4f);
 
     // Create a graphical text to display
     sf::Font font;
@@ -52,9 +46,11 @@ int main(int, char const**)
     if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
         return EXIT_FAILURE;
     }
-
-    // Play the music
-    music.play();
+    
+    sf::RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));
+    rectangle.setFillColor(sf::Color::Red);
+    rectangle.setPosition(400, 300);
+    rectangle.setOrigin(rectangle.getSize().x/2, rectangle.getSize().y/2);
 
     // Start the game loop
     while (window.isOpen())
@@ -74,16 +70,28 @@ int main(int, char const**)
             }
         }
 
-        // Clear screen
-        window.clear();
-
-        // Draw the sprite
-        window.draw(sprite);
-
-        // Draw the string
-        window.draw(text);
-
-        // Update the window
+        // move mushroom
+        sf::Vector2f pos(mushroomSprite.getPosition());
+        
+        if (
+            ((pos.x + size.x/2 > window.getSize().x) && increment.x > 0) ||
+            ((pos.x - size.x/2 < 0) && increment.x < 0)
+        ) {
+            increment.x *= -1;
+        }
+        
+        if (
+            ((pos.y + size.y/2 > window.getSize().y) && increment.y > 0) ||
+            ((pos.y - size.y/2 < 0) && increment.y < 0)
+            ) {
+            increment.y *= -1;
+        }
+        
+        window.clear(sf::Color(16, 16, 16, 255)); // Dark gray.
+        
+        mushroomSprite.setPosition(pos + increment);
+        window.draw(mushroomSprite);
+        
         window.display();
     }
 

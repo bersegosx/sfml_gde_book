@@ -21,6 +21,8 @@ public:
     void Update();
     void Render();
     Window* GetWindow();
+    sf::Time GetElapsedTime();
+    void RestartClock();
     
 private:
     void MoveMushroom();
@@ -29,6 +31,8 @@ private:
     sf::Texture m_mushroomTexture;
     sf::Sprite m_mushroom;
     sf::Vector2f m_increment;
+    sf::Time m_elapsedTime;
+    sf::Clock m_clock;
 };
 
 #endif /* Game_hpp */

@@ -29,6 +29,7 @@ int main(int, char const**)
         game.HandleInput();
         game.Update();
         game.Render();
+        game.RestartClock();
     }
     
     return EXIT_SUCCESS;

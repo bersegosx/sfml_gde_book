@@ -16,7 +16,7 @@ Game::Game(): m_window("Chapter 2", sf::Vector2u(1024, 768)) {
     m_mushroomTexture.loadFromFile(resourcePath() + "Mushroom.png");
     m_mushroom.setTexture(m_mushroomTexture);
     m_mushroom.setOrigin(m_mushroomTexture.getSize().x/2, m_mushroomTexture.getSize().y/2);
-    m_increment = sf::Vector2f(0.1f, 0.1f);
+    m_increment = sf::Vector2f(400.1f, 400.1f);
 }
 
 Game::~Game() {}
@@ -53,11 +53,18 @@ void Game::MoveMushroom() {
         m_increment.y *= -1;
     }
     
+    float deltaTime = m_elapsedTime.asSeconds();
     m_mushroom.setPosition(
-        pos.x + m_increment.x,
-        pos.y + m_increment.y);
+        pos.x + m_increment.x * deltaTime,
+        pos.y + m_increment.y * deltaTime);
 }
 
 Window* Game::GetWindow() {
     return &m_window;
+}
+
+sf::Time Game::GetElapsedTime() { return m_elapsedTime; }
+
+void Game::RestartClock() {
+    m_elapsedTime = m_clock.restart();
 }

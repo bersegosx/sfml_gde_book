@@ -16,6 +16,7 @@
 		C1D10A80229AC02B00CE0823 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D10A7E229AC02B00CE0823 /* Game.cpp */; };
 		C1D10A83229AC04800CE0823 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D10A81229AC04800CE0823 /* Window.cpp */; };
 		C1D10A85229AC30100CE0823 /* Mushroom.png in Resources */ = {isa = PBXBuildFile; fileRef = C1D10A84229AC30100CE0823 /* Mushroom.png */; };
+		C1EA8A37229C74FD00FBD925 /* Snake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1EA8A35229C74FD00FBD925 /* Snake.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		C1D10A81229AC04800CE0823 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		C1D10A82229AC04800CE0823 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
 		C1D10A84229AC30100CE0823 /* Mushroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mushroom.png; sourceTree = "<group>"; };
+		C1EA8A35229C74FD00FBD925 /* Snake.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Snake.cpp; sourceTree = "<group>"; };
+		C1EA8A36229C74FD00FBD925 /* Snake.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Snake.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 				C1D10A81229AC04800CE0823 /* Window.cpp */,
 				C1D10A82229AC04800CE0823 /* Window.hpp */,
 				C1D10A7E229AC02B00CE0823 /* Game.cpp */,
+				C1EA8A35229C74FD00FBD925 /* Snake.cpp */,
+				C1EA8A36229C74FD00FBD925 /* Snake.hpp */,
 				C1D10A7F229AC02B00CE0823 /* Game.hpp */,
 				C1D10A70229AB71F00CE0823 /* Resources */,
 				C1D10A69229AB71F00CE0823 /* Supporting Files */,
@@ -192,6 +197,7 @@
 			files = (
 				C1D10A80229AC02B00CE0823 /* Game.cpp in Sources */,
 				C1D10A6F229AB71F00CE0823 /* main.cpp in Sources */,
+				C1EA8A37229C74FD00FBD925 /* Snake.cpp in Sources */,
 				C1D10A6C229AB71F00CE0823 /* ResourcePath.mm in Sources */,
 				C1D10A83229AC04800CE0823 /* Window.cpp in Sources */,
 			);

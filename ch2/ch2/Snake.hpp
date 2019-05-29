@@ -39,6 +39,12 @@ public:
     void ToggleLost();
     void Extend();
     
+    void Tick();
+    void Move();
+    void Cut(int);
+    
+    void Render(sf::RenderWindow*);
+    
 private:
     void CheckCollision();
     

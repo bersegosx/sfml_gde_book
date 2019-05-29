@@ -21,6 +21,8 @@
 #include "ResourcePath.hpp"
 #include "Game.hpp"
 
+#include "Snake.hpp"
+
 int main(int, char const**)
 {
     Game game;

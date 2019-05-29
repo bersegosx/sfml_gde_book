@@ -16,10 +16,6 @@ Snake::Snake(int l_block_size) {
 
 Snake::~Snake() {}
 
-void Snake::CheckCollision() { 
-    <#code#>;
-}
-
 void Snake::Reset() { 
     m_snakeBody.clear();
     
@@ -83,5 +79,74 @@ void Snake::Extend() {
         } else if (m_dir == Direction::Right) {
             m_snakeBody.push_back(SnakeSegment(tail_head.position.x - 1, tail_head.position.y));
         }
+    }
+}
+
+void Snake::Tick() {
+    if (m_snakeBody.empty()) { return; }
+    if (m_dir == Direction::None) { return; }
+    
+    Move();
+    CheckCollision();
+}
+
+void Snake::Move() {
+    // move body
+    for (int i = m_snakeBody.size() - 1; i > 0; --i) {
+        m_snakeBody[i].position = m_snakeBody[i - 1].position;
+    }
+    
+    // move head
+    if (m_dir == Direction::Up) {
+        m_snakeBody[0].position.y -= 1;
+    } else if (m_dir == Direction::Down) {
+        m_snakeBody[0].position.y += 1;
+    } else if (m_dir == Direction::Left) {
+        m_snakeBody[0].position.x -= 1;
+    } else if (m_dir == Direction::Right) {
+        m_snakeBody[0].position.x += 1;
+    }
+}
+
+void Snake::CheckCollision() {
+    if (m_snakeBody.size() < 5) { return; }
+    
+    SnakeSegment& head = m_snakeBody.front();
+    // or SnakeContainer::iterator
+    for (auto itr = m_snakeBody.begin() + 1;
+         itr != m_snakeBody.end(); itr++)
+    {
+        if (itr->position == head.position) {
+            int segmentsCount = m_snakeBody.end() - itr;
+            Cut(segmentsCount);
+            break;
+        }
+    }
+}
+
+void Snake::Cut(int l_segments) { 
+    for (int i=0; i < l_segments; i++) {
+        m_snakeBody.pop_back();
+    }
+    
+    m_lives--;
+    if (m_lives <= 0) { Lose(); }
+}
+
+void Snake::Render(sf::RenderWindow* l_window) {
+    if (m_snakeBody.empty()) { return; };
+    
+    // draw head
+    auto head = m_snakeBody.begin();
+    m_bodyRect.setFillColor(sf::Color::Yellow);
+    m_bodyRect.setPosition(head->position.x * m_size, head->position.y * m_size);
+    l_window->draw(m_bodyRect);
+    
+    // draw body
+    m_bodyRect.setFillColor(sf::Color::Green);
+    for (auto itr = m_snakeBody.begin() + 1;
+         itr < m_snakeBody.end(); ++itr) {
+        m_bodyRect.setPosition(itr->position.x * m_size, itr->position.y * m_size);
+        l_window->draw(m_bodyRect);
     }
 }

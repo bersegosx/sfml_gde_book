@@ -12,6 +12,9 @@
 #include "Window.hpp"
 #include <SFML/Graphics.hpp>
 
+#include "Snake.hpp"
+
+
 class Game{
 public:
     Game();
@@ -33,6 +36,8 @@ private:
     sf::Vector2f m_increment;
     sf::Time m_elapsedTime;
     sf::Clock m_clock;
+    
+    Snake m_snake;
 };
 
 #endif /* Game_hpp */

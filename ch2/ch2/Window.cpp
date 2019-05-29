@@ -75,3 +75,7 @@ sf::Vector2u Window::GetWindowSize() { return m_windowSize; }
 void Window::Draw(sf::Drawable& l_drawable) {
     m_window.draw(l_drawable);
 }
+
+sf::RenderWindow* Window::GetRenderWindow() {
+    return &m_window;
+}

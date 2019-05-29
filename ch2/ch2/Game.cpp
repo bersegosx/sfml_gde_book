@@ -12,7 +12,7 @@
 /*
  `m_window` was declared in Game.hpp. Custom inline init
  */
-Game::Game(): m_window("Chapter 2", sf::Vector2u(1024, 768)) {
+Game::Game(): m_window("Chapter 2", sf::Vector2u(1024, 768)), m_snake(32) {
     m_mushroomTexture.loadFromFile(resourcePath() + "Mushroom.png");
     m_mushroom.setTexture(m_mushroomTexture);
     m_mushroom.setOrigin(m_mushroomTexture.getSize().x/2, m_mushroomTexture.getSize().y/2);
@@ -24,6 +24,11 @@ Game::~Game() {}
 void Game::Render() { 
     m_window.BeginDraw();
     m_window.Draw(m_mushroom);
+    
+    Window* window = GetWindow();
+    sf::RenderWindow* renderWindow = window->GetRenderWindow();
+    m_snake.Render(renderWindow);
+    
     m_window.EndDraw();
 }
 

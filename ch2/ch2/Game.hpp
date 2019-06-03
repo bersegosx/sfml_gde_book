@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Snake.hpp"
+#include "World.hpp"
 
 
 class Game{
@@ -24,7 +25,7 @@ public:
     void Update();
     void Render();
     Window* GetWindow();
-    sf::Time GetElapsedTime();
+    float GetElapsedTime();
     void RestartClock();
     
 private:
@@ -34,10 +35,11 @@ private:
     sf::Texture m_mushroomTexture;
     sf::Sprite m_mushroom;
     sf::Vector2f m_increment;
-    sf::Time m_elapsedTime;
+    float m_elapsedTime;
     sf::Clock m_clock;
     
     Snake m_snake;
+    World m_world;
 };
 
 #endif /* Game_hpp */

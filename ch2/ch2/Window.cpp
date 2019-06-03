@@ -35,6 +35,7 @@ void Window::Create() {
     // "auto" - means detect var type automatically
     auto style = (m_isFullScreen ? sf::Style::Fullscreen : sf::Style::Default);
     m_window.create({m_windowSize.x, m_windowSize.y, 32}, m_windowTitle, style);
+    m_window.setFramerateLimit(60);
 }
 
 void Window::Destroy() {

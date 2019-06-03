@@ -25,7 +25,7 @@ void Snake::Reset() {
     
     SetDirection(Direction::None);
     
-    m_speed = 15;
+    m_speed = 7;
     m_lives = 3;
     m_score = 0;
     m_lost = false;
@@ -134,12 +134,14 @@ void Snake::Cut(int l_segments) {
 }
 
 void Snake::Render(sf::RenderWindow* l_window) {
-    if (m_snakeBody.empty()) { return; };
+        if (m_snakeBody.empty()) { return; };
     
     // draw head
     auto head = m_snakeBody.begin();
     m_bodyRect.setFillColor(sf::Color::Yellow);
     m_bodyRect.setPosition(head->position.x * m_size, head->position.y * m_size);
+    
+//    printf("head/x: %d", head->position.x * m_size);
     l_window->draw(m_bodyRect);
     
     // draw body
